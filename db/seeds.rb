@@ -12,7 +12,7 @@ User.create! name: "hai ha", email: "haiha210.gm@gmail.com", password: "123456",
   birthday: FFaker::Time.between(50.year.ago, 20.year.ago)
 
 
-99.times do |n|
+10.times do |n|
   name = FFaker::Name.name
   email = FFaker::Internet.email
   address = FFaker::Address.street_address + ", " + FFaker::Address.city
@@ -38,4 +38,14 @@ categories = Category.order(:created_at).take(10)
   }
 end
 
-Product.all.each { |product| product.images.create! image_url: FFaker::Avatar.image(slug = nil, size = '250x250', format = 'png', bgset = nil)}
+Product.all.each { |product| product.type_products.create! color: FFaker::Color.name, size: FFaker::Random.rand(35..42)}
+TypeProduct.all.each { |product| product.images.create! image_url: FFaker::Avatar.image(slug = nil, size = '250x250', format = 'png', bgset = nil)}
+
+30.times do |n|
+  start_date = FFaker::Time.between(10.days.ago , Date.today + 2.weeks)
+  end_date = start_date + 2.days
+  description = FFaker::Lorem.paragraph
+  Promotion.create! start_date: start_date, end_date: end_date, description: description
+end
+
+Product.all.each { |product| product.product_promotions.create! promotion_id: FFaker::Random.rand(1..30), percent: FFaker::Random.rand(5..15) }

@@ -1,7 +1,7 @@
 <div class="item hot-product">
   <div class="col-md-3 col-sm-6 col-xs-12">
     <%= link_to  product_path(product), class:"thumbnail" do %>
-      <%= image_tag product.show_img, class: "img-responsive" %>
+      <%= image_tag product.type_products.first.show_img, class: "img-responsive" %>
       <% if product.new_product? %>
         <span class="new-tag"><%= t ".new" %></span>
       <% end %>

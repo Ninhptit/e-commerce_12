@@ -462,10 +462,11 @@ h1.have-margin {
     margin: 16px 0 5px;
     text-align: left;
   }
-  .price {
+  .price_old {
     color: $color_red_orange_approx;
     font-size: 19px;
     font-weight: 500;
+    text-decoration: line-through;
   }
   .sale_off {
     font-weight: 300;

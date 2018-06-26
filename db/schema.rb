@@ -32,10 +32,10 @@ ActiveRecord::Schema.define(version: 20180621022141) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "image_url"
-    t.bigint "product_id"
+    t.bigint "type_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_images_on_product_id"
+    t.index ["type_product_id"], name: "index_images_on_type_product_id"
   end
 
   create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 20180621022141) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
-  create_table "types_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "type_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "color"
     t.integer "quatity"
     t.string "size"
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_types_products_on_product_id"
+    t.index ["product_id"], name: "index_type_products_on_product_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20180621022141) do
   add_foreign_key "categories", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
-  add_foreign_key "images", "products"
+  add_foreign_key "images", "type_products"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "products"
   add_foreign_key "orders", "users"
@@ -143,5 +143,5 @@ ActiveRecord::Schema.define(version: 20180621022141) do
   add_foreign_key "products", "users"
   add_foreign_key "ratings", "products"
   add_foreign_key "ratings", "users"
-  add_foreign_key "types_products", "products"
+  add_foreign_key "type_products", "products"
 end

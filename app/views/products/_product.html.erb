@@ -2,7 +2,7 @@
   <div class="thumbnail">
     <%= link_to  product_path(product), title: product.name, 
       data: {toggle:"tooltip" ,placement:"right"}  do %>
-      <%= image_tag product.show_img, class: "img-responsive"%>
+      <%= image_tag product.type_products.first.show_img, class: "img-responsive"%>
     <% end %>  
     <% if product.new_product? %>
       <span class="new-tag"><%= t ".new" %></span>

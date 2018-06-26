@@ -1,19 +1,28 @@
 <div class="row">
   <div class="col-sm-4">
-    <%= image_tag @product.show_img, class: "Card image cap"%>
+    <%= image_tag @product.type_products.first.show_img, class: "Card image cap"%>
   </div>
   <div class="col-md-offset-2"></div>
   <div class="col-sm-6 mt-30">
     <div class="detail">
       <h1 class="name"><%= @product.name %></h1>
-      <p class="price">
+      <% if @product.promotions.check_sale.present? %>
+        <p class="price_old">
         <%= @product.price.to_s %>
-      </p>
-      <p class="sale_off">
+        </p>
+        <p class="price_new">
+          <%= @product.get_price_sale_in_day.to_s %>
+        </p>
+        <p class="sale_off">
         <span class="price-label"><%= t ".saving" %></span>
-        <span class="discount-percent">30 <%= t ".percent" %></span>
+        <span class="discount-percent"><%= @product.get_sale_in_day %>%</span>
           <span id="span-saving-price"></span>
       </p>
+      <% else %>
+        <p class="price">
+        <%= @product.price.to_s %>
+        </p>
+      <% end %>
       <p><%= @product.descriptions %></p>
       <span>
         <i class="fa fa-star" aria-hidden="true"></i>
@@ -23,6 +32,12 @@
         <i class="fa fa-star" aria-hidden="true"></i>
         <i class="fa fa-star" aria-hidden="true"></i>
       </span>
+      <select class="selectpicker">
+        <option>Mustard</option>
+        <option>Ketchup</option>
+        <option>Relish</option>
+      </select>
+      
       <%= link_to products_path, class: "btn btn-success ml-15" do %>
         <span class="glyphicon glyphicon-shopping-cart"></span> <%= t ".cart_shopping"%>
       <% end %>

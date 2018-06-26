@@ -1,6 +1,6 @@
-class CreateTypesProducts < ActiveRecord::Migration[5.1]
+class CreateTypeProducts < ActiveRecord::Migration[5.1]
   def change
-    create_table :types_products do |t|
+    create_table :type_products do |t|
       t.string :color
       t.integer :quatity
       t.string :size

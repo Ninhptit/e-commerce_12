@@ -104,6 +104,8 @@ en:
       saving: "Saving: "
       percent: "%"
       cart_shopping: "Cart Shopping"
+    hot_product:
+      new: "new"  
 
   password_resets:
     create:
@@ -122,8 +124,8 @@ en:
   expire: "This link will expire in two hours."
   ignore: "If you did not request your password to be reset, please ignore this email and your password will stay as it is."    
   products:
-    hot_product:
-      new: "new"
+    index:
+      please_login: "Please login."
   admin:
     edit: "Edit"
     delete: "Delete"
@@ -191,5 +193,3 @@ en:
       create:
         success: "Create product success"
         warning: "Something wrong!!"
-      logged_in_user:
-        please_login: "Please log in."  
