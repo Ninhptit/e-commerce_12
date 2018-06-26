@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
     create_table :orders do |t|
       t.string :address
       t.string :phone
-      t.integer :status, default: 0
+      t.boolean :status, default: false
       t.references :user, foreign_key: true
 
       t.timestamps

@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>CART</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>price</th>
+        <th>Quantity
+        </th>
+        <th>TypeProduct</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @order.order_details.each do |order_detail|  %>
+      <tr id="order_detail_<%= order_detail.id %>">
+        <td><%= image_tag order_detail.type_product.show_img, class: "Card image cap", with: "100px", height: "100px" %></td>
+        <td><%= order_detail.type_product.product.name %></td>
+        <td><%= order_detail.price %></td>
+        <%= form_tag order_detail_path(order_detail.id), {method: :put, remote: :true } do %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
+          <td><%= number_field_tag 'quantity', order_detail.quantity, :onchange => "this.form.submit();" %></td>
+          <td><%= select_tag :type_product_id, options_for_select(order_detail.type_product.product.type_products.all.collect{ |u| [[u.size, u.color], u.id] }), :onchange => "this.form.submit();" %></td>
+        <% end %>
+        <td><%= link_to "Destroy",  order_detail_path(order_detail.id), class: "delete_order_detail",  method: :delete, confirm: "Are you sure?", remote: true %></td>
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>
+</div>

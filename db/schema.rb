@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626145359) do
+ActiveRecord::Schema.define(version: 20180627013857) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -32,27 +32,27 @@ ActiveRecord::Schema.define(version: 20180626145359) do
 
   create_table "images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "image_url"
-    t.bigint "product_id"
+    t.bigint "type_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_images_on_product_id"
+    t.index ["type_product_id"], name: "index_images_on_type_product_id"
   end
 
   create_table "order_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "quantity"
     t.float "price", limit: 24
     t.bigint "order_id"
-    t.bigint "product_id"
+    t.bigint "type_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_details_on_order_id"
-    t.index ["product_id"], name: "index_order_details_on_product_id"
+    t.index ["type_product_id"], name: "index_order_details_on_type_product_id"
   end
 
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "address"
     t.string "phone"
-    t.integer "status", default: 0
+    t.boolean "status", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -101,6 +101,9 @@ ActiveRecord::Schema.define(version: 20180626145359) do
   end
 
   create_table "type_products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "color"
+    t.integer "quantity"
+    t.string "size"
     t.bigint "product_id"
     t.string "color"
     t.integer "quantity"
@@ -136,9 +139,9 @@ ActiveRecord::Schema.define(version: 20180626145359) do
   add_foreign_key "categories", "users"
   add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
-  add_foreign_key "images", "products"
+  add_foreign_key "images", "type_products"
   add_foreign_key "order_details", "orders"
-  add_foreign_key "order_details", "products"
+  add_foreign_key "order_details", "type_products"
   add_foreign_key "orders", "users"
   add_foreign_key "product_promotions", "products"
   add_foreign_key "product_promotions", "promotions"

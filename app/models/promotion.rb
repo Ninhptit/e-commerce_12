@@ -6,6 +6,8 @@ class Promotion < ApplicationRecord
   validate :start_date_before_end_date
 
   accepts_nested_attributes_for :product_promotions, allow_destroy: true
+  
+  scope :check_sale, ->{where("start_date <= ? and end_date >= ?", DateTime.now, DateTime.now)}
   scope :search, (lambda do |keyword|
     keyword = keyword.to_s.strip
     where "name LIKE ?", "%#{sanitize_sql_like keyword}%" unless keyword.blank?

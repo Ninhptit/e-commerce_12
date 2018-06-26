@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   has_many :comments
   has_many :type_products, dependent: :destroy
   has_many :product_promotions, dependent: :destroy
-  has_many :images, dependent: :destroy
+  has_many :promotions, through: :product_promotions
   validates :name, :price, :descriptions, presence: true
   accepts_nested_attributes_for :type_products, allow_destroy: true
   scope :new_products, (lambda do
@@ -30,12 +30,15 @@ class Product < ApplicationRecord
     created_at >= Settings.rules_new_product.days.ago
   end
 
-  def show_img
-    path = ActionController::Base.helpers.image_path(Settings.picture.default)
-    images.first.image_url || path
+  def get_sale_in_day
+    promotion = self.promotions.check_sale.first
+    if promotion.present?
+      promotion.product_promotions.first.percent
+    end
   end
 
-  def show_all_img
-    images.to_a.map(&:image_url)
+  def get_price_sale_in_day
+    sale = get_sale_in_day
+    price * (100-sale) * 0.01
   end
 end
