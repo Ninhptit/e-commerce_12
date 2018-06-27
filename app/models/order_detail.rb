@@ -1,7 +1,6 @@
 class OrderDetail < ApplicationRecord
   belongs_to :order
-  belongs_to :product
+  belongs_to :type_product
 
-  validates :quantity, :product, presence: true
-  
+  scope :find_type_product, ->(type_product){where(type_product_id: type_product)}
 end

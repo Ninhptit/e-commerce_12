@@ -7,8 +7,6 @@ class Product < ApplicationRecord
   has_many :product_promotions
   has_many :promotions, through: :product_promotions
   validates :name, :price, :descriptions, presence: true
-  has_many :order_details
-  has_many :orders, through: :order_details
 
   scope :new_products, (lambda do
                           where("created_at >= ?",

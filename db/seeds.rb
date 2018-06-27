@@ -29,9 +29,9 @@ users = User.order(:created_at).take(6)
 30.times do
   users.each { |user| user.categories.create! name: FFaker::Name.name }
 end
-categories = Category.order(:created_at).take(10)
+categories = Category.order(:created_at).take(5)
 
-50.times do
+20.times do
   categories.each { |category| users[1].products.create! name: FFaker::Name.name, 
     price: (100 * FFaker::Random.rand).round(2), descriptions: FFaker::Lorem.paragraph,
     category_id: category.id
@@ -41,11 +41,11 @@ end
 Product.all.each { |product| product.type_products.create! color: FFaker::Color.name, size: FFaker::Random.rand(35..42)}
 TypeProduct.all.each { |product| product.images.create! image_url: FFaker::Avatar.image(slug = nil, size = '250x250', format = 'png', bgset = nil)}
 
-30.times do |n|
-  start_date = FFaker::Time.between(10.days.ago , Date.today + 2.weeks)
+10.times do |n|
+  start_date = FFaker::Time.between(2.days.ago , Date.today + 2.weeks)
   end_date = start_date + 2.days
   description = FFaker::Lorem.paragraph
   Promotion.create! start_date: start_date, end_date: end_date, description: description
 end
 
-Product.all.each { |product| product.product_promotions.create! promotion_id: FFaker::Random.rand(1..30), percent: FFaker::Random.rand(5..15) }
+Product.all.each { |product| product.product_promotions.create! promotion_id: FFaker::Random.rand(1..10), percent: FFaker::Random.rand(5..15) }

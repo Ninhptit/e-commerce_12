@@ -6,24 +6,33 @@
   <div class="col-sm-6 mt-30">
     <div class="detail">
       <h1 class="name"><%= @product.name %></h1>
-      <% if @product.promotions.check_sale.present? %>
+      <%= form_for(@order, remote: true, class: "add_cart" )do |f| %>
+
+        <%= f.fields_for :order_details do |ff| %>
+        <% if @product.promotions.check_sale.present? %>
         <p class="price_old">
         <%= @product.price.to_s %>
         </p>
         <p class="price_new">
-          <%= @product.get_price_sale_in_day.to_s %>
+          <%= ff.text_field :price, :value => @product.get_price_sale_in_day.to_s %>
         </p>
         <p class="sale_off">
         <span class="price-label"><%= t ".saving" %></span>
         <span class="discount-percent"><%= @product.get_sale_in_day %>%</span>
           <span id="span-saving-price"></span>
-      </p>
-      <% else %>
-        <p class="price">
-        <%= @product.price.to_s %>
         </p>
+        <% else %>
+          <p class="price">
+          <%= ff.text_field :price, :value => @product.price.to_s %>
+          </p>
+        <% end %>
+        <p><%= @product.descriptions %></p>
+        <%= ff.collection_select(:type_product_id, @product.type_products, :id, :size) %>
+        <%= ff.number_field :quantity, :value => 1 %>
+
+        <% end %>
+         <%= f.submit "Cart Shopping", class: "btn btn-success"%>
       <% end %>
-      <p><%= @product.descriptions %></p>
       <span>
         <i class="fa fa-star" aria-hidden="true"></i>
         <i class="fa fa-star" aria-hidden="true"></i>
@@ -32,15 +41,16 @@
         <i class="fa fa-star" aria-hidden="true"></i>
         <i class="fa fa-star" aria-hidden="true"></i>
       </span>
-      <select class="selectpicker">
-        <option>Mustard</option>
-        <option>Ketchup</option>
-        <option>Relish</option>
-      </select>
-      
-      <%= link_to products_path, class: "btn btn-success ml-15" do %>
-        <span class="glyphicon glyphicon-shopping-cart"></span> <%= t ".cart_shopping"%>
-      <% end %>
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('#new_order').on('ajax:success', function(e, xhr, status, error){
+      console.log(e);
+    }).on('ajax:error',function(e, xhr, status, error){
+      console.log("fail");
+    });
+  });
+</script>
