@@ -31,14 +31,12 @@ class Product < ApplicationRecord
   end
 
   def get_sale_in_day
-    promotion = self.promotions.check_sale.first
-    if promotion.present?
-      promotion.product_promotions.first.percent
-    end
+    promotion = promotions.check_sale.first
+    promotion.product_promotions.first.percent if promotion.present?
   end
 
   def get_price_sale_in_day
     sale = get_sale_in_day
-    price * (100-sale) * 0.01
+    price * (100 - sale) * 0.01
   end
 end

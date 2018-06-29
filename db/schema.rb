@@ -105,9 +105,6 @@ ActiveRecord::Schema.define(version: 20180627013857) do
     t.integer "quantity"
     t.string "size"
     t.bigint "product_id"
-    t.string "color"
-    t.integer "quantity"
-    t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_type_products_on_product_id"

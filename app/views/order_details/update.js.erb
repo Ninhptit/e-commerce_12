@@ -1,0 +1,5 @@
+$(".icon-cart-num").empty()
+$(".icon-cart-num").html("<%= @current_user.orders.unpaid.first.get_quantity_product_in_cart %>");
+$(document).on('turbolinks:load',function() {
+  console.log("test");
+});

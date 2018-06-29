@@ -10,7 +10,7 @@ class Order < ApplicationRecord
 
   def get_quantity_product_in_cart
     sum_quantity = 0
-    self.order_details.each do |order_detail|
+    order_details.each do |order_detail|
       sum_quantity += order_detail.quantity
     end
     sum_quantity

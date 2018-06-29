@@ -18,11 +18,13 @@
         <td><%= image_tag order_detail.type_product.show_img, class: "Card image cap", with: "100px", height: "100px" %></td>
         <td><%= order_detail.type_product.product.name %></td>
         <td><%= order_detail.price %></td>
+        <td>
         <%= form_tag order_detail_path(order_detail.id), {method: :put, remote: :true } do %>
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %> 
-          <td><%= number_field_tag 'quantity', order_detail.quantity, :onchange => "this.form.submit();" %></td>
-          <td><%= select_tag :type_product_id, options_for_select(order_detail.type_product.product.type_products.all.collect{ |u| [[u.size, u.color], u.id] }), :onchange => "this.form.submit();" %></td>
+          <%= number_field_tag 'quantity', order_detail.quantity, :onchange => "this.form.submit();" %>
+          <%= select_tag :type_product_id, options_for_select(order_detail.type_product.product.type_products.all.collect{ |u| [[u.size, u.color], u.id] }), :onchange => "this.form.submit();" %>
         <% end %>
+        </td>
         <td><%= link_to "Destroy",  order_detail_path(order_detail.id), class: "delete_order_detail",  method: :delete, confirm: "Are you sure?", remote: true %></td>
       </tr>
     <% end %>  

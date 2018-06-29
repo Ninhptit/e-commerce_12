@@ -37,7 +37,7 @@
             <span class="icon-cart-bg fa-stack fa-1x">
               <i class="fa fa-shopping-bag fa-stack-1x "></i>
               <span class="fa fa-stack-1x">
-                <span class="icon-cart-num">
+                <span class="icon-cart-num" id="cart-num">
                   <% if current_user.present? && @current_user.orders.unpaid.first.present?%>
                     <%= @current_user.orders.unpaid.first.get_quantity_product_in_cart %></span>              
                   <% end %> 

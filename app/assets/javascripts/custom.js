@@ -2,6 +2,10 @@ $(document).on('turbolinks:load',() => {
   activeNav();
   createSilerProduct();
   $('[data-toggle="tooltip"]').tooltip();
+  $('#quantity').on('change', function() {
+    console.log("test");
+  })
+  
 });
 
 $(document).ready(function(){
@@ -37,3 +41,4 @@ createSilerProduct = () => {
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
+
