@@ -17,11 +17,11 @@
       <ul class="dropdown-menu dropdown-user">
         <li>
           <%= link_to current_user  do %>
-            <i class="fa fa-user fa-fw"></i> <%= t "admin.dashbroad.header.user_profile" %>
+            <i class="fa fa-user fa-fw"></i> <%= t ".user_profile" %>
           <% end %>
         <li class="divider"></li>
           <%= link_to logout_path, method: :delete  do %>
-            <i class="fa fa-sign-out fa-fw"></i> <%= t "admin.dashbroad.header.logout" %>
+            <i class="fa fa-sign-out fa-fw"></i> <%= t ".logout" %>
           <% end %>
         </li>
       </ul>
@@ -43,17 +43,36 @@
           </li>
           <li>
             <%= link_to admin_path do %>
-              <i class="fa fa-dashboard fa-fw"></i> <%= t "admin.dashbroad.menu.home" %>
+              <i class="fa fa-dashboard fa-fw"></i> <%= t ".home" %>
             <% end %>
           </li>
           <li>
             <%= link_to admin_categories_path do %>
-              <i class="fa fa-bookmark fa-fw"></i> <%= t "admin.dashbroad.menu.category" %>
+              <i class="fa fa-bookmark fa-fw"></i> <%= t ".category" %>
             <% end %>
           </li>
           <li>
             <%= link_to admin_products_path do %>
-              <i class="fa fa-shopping-bag fa-fw"></i> <%= t "admin.dashbroad.menu.product" %>
+              <i class="fa fa-flag fa-fw"></i> <%= t ".product" %>
+            <% end %>
+            <ul class="nav nav-second-level">
+              <li>
+                <%= link_to admin_products_path do %>
+                  <i class="fa fa-shopping-bag fa-fw"></i> 
+                  <%= t ".product" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to admin_type_products_path do %>
+                  <i class="fa fa-map fa-fw"></i> 
+                  <%= t ".type_product" %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+           <li>
+            <%= link_to admin_promotions_path do %>
+              <i class="fa fa-tag fa-fw"></i> <%= t ".promotion" %>
             <% end %>
           </li>
       </ul>

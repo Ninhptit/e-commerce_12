@@ -1,0 +1,11 @@
+<tr>
+  <td><%= type_product.product_id %></td>
+  <td><%= type_product.product.name%></td>
+  <td><%= type_product.color %></t>
+  <td><%= type_product.quantity %></td>
+  <td><%= type_product.size %></td>
+  <td><%= link_to t("admin.edit"), edit_admin_type_product_path(type_product) %></td>
+  <td><%= link_to t("admin.delete"), admin_type_product_path(id: type_product.id), 
+    method: :delete, data: { confirm: t(".you_sure") } %>
+  </td>
+</tr>

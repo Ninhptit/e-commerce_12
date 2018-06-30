@@ -14,7 +14,9 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap
-//= require_tree .
+//= require cable
+//= require custom.js
+//= require form.js
 //= require i18n
 //= require i18n.js
 //= require i18n/translations

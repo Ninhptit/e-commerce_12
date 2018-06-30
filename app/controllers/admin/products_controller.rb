@@ -13,10 +13,11 @@ class Admin::ProductsController < Admin::BaseController
 
   def new
     @product = current_user.products.build
+    @product.type_products.build
   end
 
   def create
-    @product = current_user.products.build product_params
+    @product = current_user.products.new product_params
     if @product.save
       flash[:success] = t ".success"
       redirect_to admin_products_url
@@ -24,8 +25,6 @@ class Admin::ProductsController < Admin::BaseController
       render :new
     end
   end
-
-  def edit; end
 
   def update
     if @product.update_attributes product_params
@@ -49,11 +48,13 @@ class Admin::ProductsController < Admin::BaseController
     Product.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
   private
+
   def load_product
-    @product = Product.find_by(id: params[:id]) || not_found
+    @product = Product.find_by id: params[:id] || not_found
   end
 
   def product_params
-    params.require(:product).permit :name, :price, :category_id, :descriptions
+    params.require(:product).permit :name, :price, :category_id, :descriptions,
+      type_products_attributes: [:quantity, :size, :color, :_destroy]
   end
 end

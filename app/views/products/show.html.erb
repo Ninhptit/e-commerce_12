@@ -6,7 +6,7 @@
   <div class="col-sm-6 mt-30">
     <div class="detail">
       <h1 class="name"><%= @product.name %></h1>
-      <%= form_for(@order, remote: true, class: "add_cart" )do |f| %>
+      <%= form_for @order, remote: true do |f| %>
 
         <%= f.fields_for :order_details do |ff| %>
         <% if @product.promotions.check_sale.present? %>
@@ -14,7 +14,7 @@
         <%= @product.price.to_s %>
         </p>
         <p class="price_new">
-          <%= ff.text_field :price, :value => @product.get_price_sale_in_day.to_s %>
+          <%= ff.text_field :price, :value => @product.get_price_sale_in_day.to_s, :class => "border-none" %>
         </p>
         <p class="sale_off">
         <span class="price-label"><%= t ".saving" %></span>
@@ -23,7 +23,7 @@
         </p>
         <% else %>
           <p class="price">
-          <%= ff.text_field :price, :value => @product.price.to_s %>
+          <%= ff.text_field :price, :value => @product.price.to_s, :class => "border-none" %>
           </p>
         <% end %>
         <p><%= @product.descriptions %></p>
@@ -45,12 +45,3 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function(){
-    $('#new_order').on('ajax:success', function(e, xhr, status, error){
-      console.log(e);
-    }).on('ajax:error',function(e, xhr, status, error){
-      console.log("fail");
-    });
-  });
-</script>

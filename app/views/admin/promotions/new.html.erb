@@ -1,0 +1,14 @@
+<% provide :title, t(:home_title) %>
+<% provide :btn_text, t(".submit") %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="h2 text-center"><%= t ".title" %></div>
+  </div>
+  <div class="panel-body">
+    <div class="margin-top-15 margin-left-15">
+      <%= link_to t("admin.back"), admin_promotions_path, class:"btn btn-success" %>
+    </div>
+    :<%= render partial: "form" %>
+  </div>  
+</div>

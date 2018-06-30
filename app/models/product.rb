@@ -3,11 +3,11 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :ratings
   has_many :comments
-  has_many :type_products
-  has_many :product_promotions
+  has_many :type_products, dependent: :destroy
+  has_many :product_promotions, dependent: :destroy
   has_many :promotions, through: :product_promotions
   validates :name, :price, :descriptions, presence: true
-
+  accepts_nested_attributes_for :type_products, allow_destroy: true
   scope :new_products, (lambda do
                           where("created_at >= ?",
                             Settings.rules_new_product.days.ago)
@@ -31,14 +31,12 @@ class Product < ApplicationRecord
   end
 
   def get_sale_in_day
-    promotion = self.promotions.check_sale.first
-    if promotion.present?
-      promotion.product_promotions.first.percent
-    end
+    promotion = promotions.check_sale.first
+    promotion.product_promotions.first.percent if promotion.present?
   end
 
   def get_price_sale_in_day
     sale = get_sale_in_day
-    price * (100-sale) * 0.01
+    price * (100 - sale) * 0.01
   end
 end

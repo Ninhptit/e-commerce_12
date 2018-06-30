@@ -1,0 +1,10 @@
+<tr>
+  <td><%= promotion.id %></td>
+  <td><%= promotion.description %></t>
+  <td><%= promotion.name %></td>
+  <td><%= promotion.start_date %></td>
+  <td><%= promotion.end_date %></td>
+  <td><%= link_to t("admin.show"), admin_promotion_path(promotion) %></td>
+  <td><%= link_to t("admin.edit"), edit_admin_promotion_path(promotion) %></td>
+  <td><%= link_to t("admin.delete"), admin_promotion_path(id: promotion.id), method: :delete, data: { confirm: t(".you_sure") } %></td>
+</tr>

@@ -1,0 +1,26 @@
+<div class="col-xs-10 col-sm-10 col-md-8 col-lg-8">
+  <%= form_for [:admin, @type_product] do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+
+    <div class="form-group">
+      <%= f.label :Id_product %>
+      <%= f.text_field :product_id, class: "form-control" %>
+    </div>
+
+    <div class="form-group field">
+      <%= f.label :quantity %>
+      <%= f.number_field :quantity, step: 1, min: 0, class: "form-control" %>
+    </div>
+    <div class="form-group field">
+      <%= f.label :size %>
+      <%= f.number_field :size, min: 30, class: "form-control" %>
+    </div>
+    <div class="form-group field">
+      <%= f.label :color %>
+      <%= f.text_field :color, class: "form-control" %>
+    </div>
+    <div class="text-center">
+      <%= f.submit t("submit"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

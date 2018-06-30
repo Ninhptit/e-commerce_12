@@ -26,5 +26,9 @@ picture:
 products:
   index:
     per_page: 16
+ramdom:
+  length: "0...10"
+  char: "a..z"
+  num: 26
 rules_new_product: 7   
 time: 2

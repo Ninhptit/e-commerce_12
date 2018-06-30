@@ -52,4 +52,4 @@ node_modules/
 /config/secrets.yml
 /config/database.yml
 /public/uploads
-/public/javascripts/translations.js
+

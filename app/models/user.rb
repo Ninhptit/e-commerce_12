@@ -2,7 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
   enum role: {banned: 0, member: 1, admin: 2}
-  enum provider: {local: 0, facebook: 1, google: 2}
+  enum provider: {local: 0, facebook: 1, google_oauth2: 2}
 
   has_many :ratings
   has_many :orders
@@ -16,7 +16,8 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
     length: {maximum: Settings.user.email.maximum},
-    format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+    format: {with: VALID_EMAIL_REGEX},
+    uniqueness: {case_sensitive: false, scope: :provider}
   has_secure_password
   validates :password, presence: true,
     length: {minimum: Settings.user.password.minimum}, allow_nil: true
@@ -71,7 +72,30 @@ class User < ApplicationRecord
     reset_send_at < Settings.time.hours.ago
   end
 
+  def self.from_omniauth auth
+    where(provider: auth.provider, uid: auth.uid)
+      .first_or_initialize.tap do |user|
+      user.create_user_omiauth auth
+      user.save!
+    end
+  end
+
+  def create_user_omiauth auth
+    self.provider = auth.provider
+    self.uid = auth.uid
+    self.name = auth.info.name
+    self.email = auth.info.email
+    self.remote_avatar_url = auth.info.image.gsub("http://", "https://")
+    self.password = random_password
+    self.oauth_token = auth.credentials.token
+    self.oauth_expires_at = Time.at(auth.credentials.expires_at)
+  end
+
   private
+  def random_password
+    (0...10).map{("a".."z").to_a[rand(26)]}.join
+  end
+
   def create_activation_digest
     self.activation_token  = User.new_token
     self.activation_digest = User.digest activation_token

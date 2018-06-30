@@ -215,6 +215,9 @@ aside {
 .gravatar {
   float: left;
   margin-right: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .gravatar_edit {
@@ -262,7 +265,6 @@ a.thumbnail {
 img.img-responsive {
   border: none;
 }
-
 .caption {
   .name{ 
     font-family: 'Roboto', sans-serif;
@@ -276,9 +278,9 @@ img.img-responsive {
 .hot-carousel-control {
   top: 50%;
 }
-
 .list-title {
-  padding: 15px 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
   .h3 {
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
@@ -330,6 +332,14 @@ img.img-responsive {
   &:after {
     transform: rotate(60deg);
   }
+}
+
+.icon-gg {
+  color: $google-icon;
+}
+
+.icon-fb {
+  color: $facebook-icon;
 }
 
 /* forms */
@@ -476,5 +486,8 @@ h1.have-margin {
       color: $color_red_orange_approx;
       font-size: 13px;
     }
+  }
+  .border-none {
+    border: none;
   }
 }

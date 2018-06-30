@@ -1,6 +1,5 @@
 <% provide :title, t(:home_title) %>
 <% provide :btn_text, t(".submit") %>
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="h2 text-center"><%= t ".title" %></div>
@@ -9,6 +8,6 @@
     <%= link_to t("admin.back"), admin_categories_path, class:"btn btn-success" %>
   </div>
   <div class="panel-body">
-    <%= render "form", category: @category %>
+    <%= render "form_edit", category: @category %>
   </div>
 </div>

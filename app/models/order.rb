@@ -7,4 +7,12 @@ class Order < ApplicationRecord
 
   scope :unpaid, ->{where(status: false)}
   scope :paid, ->{where(status: true)}
+
+  def get_quantity_product_in_cart
+    sum_quantity = 0
+    order_details.each do |order_detail|
+      sum_quantity += order_detail.quantity
+    end
+    sum_quantity
+  end
 end
