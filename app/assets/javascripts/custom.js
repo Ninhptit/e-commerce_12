@@ -2,10 +2,6 @@ $(document).on('turbolinks:load',() => {
   activeNav();
   createSilerProduct();
   $('[data-toggle="tooltip"]').tooltip();
-  $('#quantity').on('change', function() {
-    console.log("test");
-  })
-  
 });
 
 $(document).ready(function(){

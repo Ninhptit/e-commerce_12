@@ -11,9 +11,9 @@ class OrdersController < ApplicationController
     else
       order = current_user.orders.new(order_params)
       @message = if order.save
-                    "Add to cart successfully"
+                    t ".add_success"
                  else
-                    "Add to cart unsuccessful"
+                    t ".add_fail"
                  end
     end
     respond_to do |format|
@@ -38,14 +38,14 @@ class OrdersController < ApplicationController
       if quantity_params > 0
         update_quantity quantity_params
       else
-        @message = "Add to cart unsuccessful"
+        @message = t ".add_fail"
       end
     else
       order_detail = order.order_details.new(order_detail_params)
       @message = if order_detail.save
-                    "Add to cart successfully"
+                    t ".add_success"
                  else
-                    "Add to cart unsuccessful"
+                    t ".add_fail"
                  end
     end
   end
@@ -53,9 +53,9 @@ class OrdersController < ApplicationController
   def update_quantity quantity_params
     quantity = order_detail.quantity + quantity_params
     @message = if order_detail.update_attributes(quantity: quantity)
-                  "Add to cart successfully"
+                  t ".add_success"
                 else
-                  "Add to cart unsuccessful"
+                  t ".add_fail"
                 end
   end
 end
