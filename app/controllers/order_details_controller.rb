@@ -6,7 +6,7 @@ class OrderDetailsController < ApplicationController
     if type_product.present?
       update_order_detail type_product
     else
-      flash[:warning] = "This product is not available"
+      flash[:warning] = t ".not_product"
     end
     respond_to do |format|
       format.html{redirect_to orders_url}
@@ -31,9 +31,9 @@ class OrderDetailsController < ApplicationController
   def update_order_detail type_product
     if type_product.check_quantity(params[:quantity].to_i)
       if @order_detail.update_attributes(quantity: params[:quantity], type_product_id: params[:type_product_id])
-        flash[:warning] = "updated successfully"
+        flash[:warning] = t ".update_success"
       else
-        flash[:warning] = "Update unsuccessful"
+        flash[:warning] = t ".update_unsuccess"
       end
     else
       flash[:warning] = "Only " << type_product.quantity.to_s << " products"

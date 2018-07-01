@@ -260,3 +260,12 @@ en:
         type_product: "Type Product"
   validate:
     date: "Start date should be before end date"
+  orders:
+    create:
+      add_success: "Add to cart successfully"
+      add_fail: "Add to cart unsuccessful" 
+  order_details:
+    update:
+      not_product: "This product is not available" 
+      update_success: "updated successfully"
+      update_unsuccess: "Update unsuccessful" 
