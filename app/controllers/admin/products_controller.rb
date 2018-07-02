@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :load_product, except: [:index, :new, :create]
+  before_action :load_product, except: %i(index new create)
   helper_method :sort_col, :sort_dir
 
   def index

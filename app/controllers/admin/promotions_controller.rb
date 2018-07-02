@@ -1,6 +1,6 @@
 class Admin::PromotionsController < Admin::BaseController
   helper_method :sort_col, :sort_dir
-  before_action :load_promotion, except: [:index, :new, :create]
+  before_action :load_promotion, except: %i(index new create)
   def index
     @promotions = Promotion.search(params[:search])
                            .order("#{sort_col} #{sort_dir}")

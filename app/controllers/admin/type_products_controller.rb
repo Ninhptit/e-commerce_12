@@ -1,6 +1,6 @@
 class Admin::TypeProductsController < Admin::BaseController
   helper_method :sort_col, :sort_dir
-  before_action :load_type_product, except: [:index, :new, :create]
+  before_action :load_type_product, except: %i(index new create)
   def index
     @type_products = TypeProduct.search(params[:search])
                                 .order("#{sort_col} #{sort_dir}")

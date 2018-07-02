@@ -38,8 +38,11 @@ categories = Category.order(:created_at).take(5)
   }
 end
 
-Product.all.each { |product| product.type_products.create! color: FFaker::Color.name, size: FFaker::Random.rand(35..42), quantity: FFaker::Random.rand(10..100)}
-TypeProduct.all.each { |product| product.images.create! remote_image_url_url: FFaker::Avatar.image(slug = nil, size = '250x250', format = 'png', bgset = nil)}
+Product.all.each { |product| product.images.create! remote_image_url_url: FFaker::Avatar.image(slug = nil, size = '250x250', format = 'png', bgset = nil)}
+users = User.order(:created_at).take(100)
+users.each do |user|
+  Product.take(10).each { |product| product.comments.build(user_id: user.id, description: FFaker::Lorem.paragraph).save}
+end
 
 10.times do |n|
   start_date = FFaker::Time.between(2.days.ago , Date.today + 2.weeks)

@@ -10,6 +10,9 @@ class ProductsController < ApplicationController
     @product = Product.find_by id: params[:id] || not_found
     @order = current_user.orders.new
     order_detail = @order.order_details.build
+    @comments = @product.comments.order(created_at: :desc)
+                        .page(params[:page])
+                        .per Settings.comment.page.per
   end
 
   private

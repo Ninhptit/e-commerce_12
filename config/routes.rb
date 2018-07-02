@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#callback"
   delete "/logout", to: "sessions#destroy"
   resources :users
-  resources :account_activations, only: [:edit]
-  resources :products, only: [:index, :show]
+  resources :account_activations, only: :edit
+  resources :products, only: %i(index show) do
+    resources :comments, only: %i(create destroy)
+  end
   
   namespace :admin do
     get "/", to: "dashbroads#index"
@@ -22,7 +24,7 @@ Rails.application.routes.draw do
     resources :type_products
   end
 
-  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :orders
   resources :order_details
+  resources :password_resets, only: %i(new create edit update)
 end

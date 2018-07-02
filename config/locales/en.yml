@@ -127,6 +127,7 @@ en:
   products:
     index:
       please_login: "Please login."
+###################### ADMIN ########################
   admin:
     edit: "Edit"
     delete: "Delete"
@@ -145,9 +146,6 @@ en:
         login: "Login"
         logout: "Logout"
         user_profile: "User Profile"
-    edit: "Edit"
-    delete: "Delete"
-    create: "Create"
     categories:
       index:
         title: "Categories"
@@ -246,7 +244,33 @@ en:
         you_sure: "You are sure ?" 
       edit:
         submit: "Submit"
+#####################################################
+###################### COMMENTS #####################
+  comments:
+    form:
+      send: "Send"
+    create:
+      please_login: "Please login!!"
+      warning: "Warning!!"
+    destroy:
+#####################################################
+###################### LAYOUTS ######################
   layouts:
+    header:
+      logo: "E-COMMERCE"
+      home: "Home"
+      help: "Help"
+      login: "Log in"
+      logout: "Log out"
+      account: "Account"
+      profile: "Profile"
+      settings: "Settings"
+    footer:
+      menu:
+      about: "About"
+      contact: "Contact"
+      news: "News"
+      footer_detail: "The %{rails_tut} by %{michael_hartl}"
     admin:
       header:
         dashbroad: "Dashbroad"
@@ -269,3 +293,129 @@ en:
       not_product: "This product is not available" 
       update_success: "updated successfully"
       update_unsuccess: "Update unsuccessful" 
+#####################################################
+###################### PASSWORD RESETS ##############
+  password_resets:
+    create:
+      email_sent: "Email sent with password reset instructions"
+      email_not_found: "Email address not found"
+    update:
+      pass_blank: "can't be empty"   
+      pass_has_reset: "Password has been reset."
+    pass_expired: "Password reset has expired."
+    update_pass: "Update password"
+    pass_expired: "Password reset has expired."
+    submit: "Submit"
+    pass_reset: "Password reset"
+    to_reset: "To reset your password click the link below:"
+    expire: "This link will expire in two hours."
+    ignore: "If you did not request your password to be reset, please ignore this email and your password will stay as it is."
+#####################################################
+###################### PRODUCT ######################
+  products:
+    index:
+      list_product: "LIST PRODUCTS"
+      add_cart: "Add to cart"
+    product:
+      money: "&#36;"
+      new: "New"
+      cart: "Cart"
+    show:
+      saving: "Saving: "
+      percent: "%"
+      cart_shopping: "Cart Shopping"
+      comment: "Comments"
+      hot_product:
+        new: "new"
+#####################################################
+###################### STATIC PAGES #################
+  static_pages:
+    about:
+      title: "About"
+      detail: "The %{rails_tut} and %{screencast_series}
+        to teach web development with %{rails_link}.
+        This is the sample application for the tutorial."
+      screencast_series: "screencast series"
+    contact:
+      title: "Contact"
+      detail: "Contact the Ruby on Rails Tutorial about the sample app at the %{rails_tut_contact}."
+      rails_tut_contact: "contact page"
+    help:
+      title: "Help"
+      rails_tut_help: "Rails Tutorial help page"
+      help_detail: "Get help on the Ruby on Rails Tutorial at the
+        %{rails_tut} To get help on this sample app, see the %{rails_book}"
+    home:      
+      detail: "This is the home page for the %{rails_tut} 
+        sample application"
+      hot_product: "Hot Product"      
+      previous: "Previous"      
+      next: "Next"
+      new_product: "New Product"
+      title: "Home"
+      sale_product: "Sale Product"
+      sign_up_now: "Sign up now!"
+      silder: "Los Angeles"
+      silder_title: "LA is always so much fun!"
+      welcome_page: "Welcome to the Sample App"
+#####################################################
+###################### SESSION ######################
+  sessions:
+    new:
+      login: "Log in"
+      new_user: "New users?"
+      remember: "Remember me on this computer"
+      forgot_pass: "Forgot password"
+      signnow: "Sign now!"
+    vertify_user:
+      message: "Account not activated. Check your email for the activation link."
+    create:
+      invalid: "Invalid email/password combination"
+  not_found: "Not Found"
+  account_activations:
+    edit:
+      account_activated: "Account activated!"
+#####################################################
+###################### SHARED #######################
+  shared:
+    error_messages:
+      error: "Error"
+#####################################################
+###################### USER MAILER ##################
+  user_mailer:
+    account_activation:
+      ecommerce2: "E-commerce2"
+      account_activation: "Account activation"
+      hi: "Hi" 
+      welcome: "Welcome to the E-commerce2! Click on the link below to activate your account:"
+      active: "Activate"
+#####################################################
+###################### USER #########################
+  users:
+    new:
+      create_account: "Create my account"
+    create:
+      check_mail_active: "Please check your email to activate your account."
+    show:
+      account_user: "Account of user:"
+      account_info: "Account information"
+    form:
+      save_change: "Save changes"
+    should_be: "should be less than 5MB"
+    invalid_activation: "Invalid activation link"
+#####################################################
+  app_title: "Ruby on Rails Tutorial Sample App"
+  # rails: "Ruby on Rails"
+  # rails_tut: "Ruby on Rails Tutorial"
+  # michael_hartl : "Michael Hartl"
+  # book: "book"
+  # error: "Error"
+  # 
+  # signup:
+  #   title: "Sign up"
+  #   detail: "This will be a signup page for new users."
+  # new:
+  # signnow: "Sign up now!"
+  # remeber_me: "Remember me on this computer"
+  # validate:
+  #   maximum: "The name must have no more than %{count} characters."

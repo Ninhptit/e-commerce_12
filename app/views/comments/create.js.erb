@@ -1,0 +1,8 @@
+<% if @error %>
+  $('#modalBodyContent').empty()
+  $('#modal-title-icon').addClass('fa fa-exclamation-triangle').css("color", "orange");
+  $('#modal-title-icon').html('<span><%= t ".warning" %><span>');
+  $('#modalBodyContent').html('<p class="alert alert-warning"><%= @error %></p>')
+  $('#myModal').modal('show');
+<% end %>
+$('#list-comment').html("<%= j render(partial: "comments/comment", collection: @comments) %>")

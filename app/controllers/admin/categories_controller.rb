@@ -1,5 +1,5 @@
 class Admin::CategoriesController < Admin::BaseController
-  before_action :load_category, except: [:index, :new, :create]
+  before_action :load_category, except: %i(index new create)
   helper_method :sort_col, :sort_dir
   def index
     @categories = Category.search(params[:search])

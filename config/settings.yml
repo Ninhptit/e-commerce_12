@@ -11,6 +11,9 @@ user:
 comment:
   description:
     maximum: 255
+    minimum: 10
+  page:
+    per: 5
 ratings:
   point: 1..5
 category:
